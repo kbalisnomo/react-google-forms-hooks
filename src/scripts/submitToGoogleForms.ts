@@ -34,7 +34,9 @@ export const submitToGoogleForms = async (
       }
     }
   })
-
+  console.log(`${GOOGLE_FORMS_URL}/${
+    form.action
+  }/formResponse?submit=Submit&${urlParams.toString()}`)
   const fetchedResult = await fetch(
     `${GOOGLE_FORMS_URL}/${
       form.action
@@ -47,11 +49,12 @@ export const submitToGoogleForms = async (
       }
     }
   )
-
+  console.log(fetchedResult)
   const wasSuccessful =
     fetchedResult.ok &&
     fetchedResult.status < 300 &&
     fetchedResult.status >= 200
 
+  console.log(wasSuccessful)
   return wasSuccessful
 }
